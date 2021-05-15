@@ -10,16 +10,26 @@ class _LoadingScreenState extends State<LoadingScreen> {
   UserLocation userLocation = new UserLocation();
 
   @override
+  void initState() {
+    super.initState();
+    userLocation.getLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    String myMargin = 'abc';
+    double myMarginAsADouble;
+
+    try {
+      myMarginAsADouble = double.parse(myMargin);
+    } catch (e) {
+      myMarginAsADouble = 30;
+    }
+
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            //Get the current location
-            userLocation.getLocation();
-          },
-          child: Text('Get Location'),
-        ),
+      body: Container(
+        margin: EdgeInsets.all(myMarginAsADouble),
+        color: Colors.red,
       ),
     );
   }
